@@ -1,0 +1,3 @@
+HapMap.dat	a data frame of SNP genetic data 
+distance	a vector of gene position on chromosome
+To get the sample data, use data(LDheatmapData)
