@@ -99,7 +99,7 @@
 	if (distances=="physical")
         	text(xpos,ypos,paste("Physical Length:", round((total.dist/1000),1),"kb",sep=""), adj=0, cex=0.9)
 	else
-        	text(xpos,ypos,paste("Genetic Map Length:", round((total.dist/1000),1),"cM",sep=""), adj=0, cex=0.9)
+        	text(xpos,ypos,paste("Genetic Map Length:", round(total.dist,1),"cM",sep=""), adj=0, cex=0.9)
     }
     # Labelling some SNPs 
     if (!is.null(SNP.name)){

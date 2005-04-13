@@ -62,6 +62,6 @@ y.length.position = 0, SNP.name = NULL)
 \section{Warnings}{ It is not possible to draw multiple LDheatmap plots
   on a single graph area. }
 \author{ Ji-hyung Shin <jshinb@sfu.ca>, Sigal Blay <sblay@sfu.ca>, Brad McNeney <mcneney@stat.sfu.ca>, Jinko Graham <jgraham@cs.sfu.ca> }
-\seealso{ LD, genotype, image }
+\seealso{ \code{\link[genetics]{LD}}, \code{\link[genetics]{genotype}}, \code{\link[graphics]{image}} }
 \examples{ demo(LDheatmap) }
 \keyword{ hplot }
