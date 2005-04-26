@@ -13,7 +13,7 @@
 LDheatmap(gdat, map.distance = 1000*(1:ncol(gdat)), distances="physical",
 LDmeas = "r", title = NULL, add.map = TRUE, x.image.show = 0.2, 
 y.image.show = 0.2, line.position = 0.2, x.length.position = 0, 
-y.length.position = 0, SNP.name = NULL)
+y.length.position = 0, SNP.name = NULL, color=heat.colors(20))
 }
 \arguments{
   \item{gdat}{ SNP data: a data frame of genotype objects. }
@@ -56,6 +56,13 @@ y.length.position = 0, SNP.name = NULL)
     from the original position in the upper right quadrant of the plot. }
   \item{SNP.name}{ A vector of character string(s) of SNP name(s) to
     be labelled in the plot. }
+  \item{color}{ A range of colors to be used for drawing the LDheatmap. 
+   The default is \code{\link[grDevices]{heat.colors}}.
+   User can specify a vector of colors or use the predefined color palettes \code{\link[grDevices]{cm.colors}}, 
+\code{\link[grDevices]{topo.colors}},
+\code{\link[grDevices]{terrain.colors}} or a subrange of
+\code{\link[grDevices]{rainbow.colors}}.
+A blue-to-red color palette can be obtained by setting color="blueToRed".}
 }
 \details{ The distance vector of SNP positions, if provided, is
   assumed to be in the same order as that of the SNPs in the data. }

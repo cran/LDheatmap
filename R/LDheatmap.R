@@ -3,11 +3,14 @@
                         title=NULL, add.map=TRUE, x.image.show = 0.2,
                         y.image.show = 0.2, line.position=0.2, 
                         x.length.position=0, y.length.position=0, 
-                        SNP.name=NULL)
+                        SNP.name=NULL, color=heat.colors(20))
 {
     for(i in 1:ncol(gdat)) {
         if(!genetics::is.genotype(gdat[,i])) stop("column ",i," is not a genotype object\n")
     }
+
+   if(color=="blueToRed")
+	color = rainbow(20, start=.7, end=0, s=.7)[20:1]
 
     # Sort data in ascending order of SNPs map position:
     if(is.vector(map.distance)){
@@ -56,19 +59,18 @@
     layout(m, heights=c(1, lcm(0.5*h))) 
     if (is.null(title)) { title = "Pairwise LD" }
     
-    col.num <- 20
-    mybreak <- c(0:col.num)/col.num
+    mybreak <- 0:length(color)/length(color)
     image(1-LD.measurement, xlim=c(imagex.0, imagex.1),
           ylim=c(imagey.0,imagey.1), axes=FALSE, main=title, cex.main=1,
-          col=heat.colors(col.num), breaks=mybreak)
+          col=color, breaks=mybreak)
       
     if(add.map) {
         SNP.id <- 1:nsnps
         snp <- (SNP.id-1)*step
         
         my.lp<- line.position
-        seq.x <- c(0.5*(my.lp-0.5*step), 1+0.5*(my.lp-0.5*step))
-        seq.y <- c(-0.5*(my.lp+0.5*step), 1-0.5*(my.lp+0.5*step))
+        seq.x <- c(0.5*(my.lp), 1+0.5*(my.lp))
+        seq.y <- c(-0.5*(my.lp), 1-0.5*(my.lp))
         lines(seq.x, seq.y, lty=1)
 
         # Adding line segments to the plot: (point1 <-> point2) 
@@ -77,24 +79,27 @@
         regionx <- seq.x[1] + ((map.distance-min.dist)/total.dist)*(seq.x[2]-seq.x[1])
         regiony <- seq.y[1] + ((map.distance-min.dist)/total.dist)*(seq.y[2]-seq.y[1]) 
 
-        D1 <- (regionx-snp)^2 + (regiony-snp+0.5*step)^2
-        D2 <- (regionx-snp-0.5*step)^2 + (regiony-snp)^2
+	# D1, D2 are the lengths of the short line segments
+	# to the middle of the bottom of the imaginery square
+	# and the the middle of the right side of the imaginery square
+	# just below the color squares of the LD plot.
+#        D1 <- (regionx-snp)^2 + (regiony-snp+0.5*step)^2
+#        D2 <- (regionx-snp-0.5*step)^2 + (regiony-snp)^2
 
-        ind <- (D1 < D2) 
+#        ind <- (D1 < D2) 
 
-        if (all(ind==1))
-            segments(snp[ind] , (snp[ind]-0.5*step), regionx[ind], regiony[ind])
-        else if (all(ind==0))
-            segments((snp[!ind]+0.5*step),snp[!ind], regionx[!ind], regiony[!ind])
-        else{
-            segments(snp[ind] , (snp[ind]-0.5*step), regionx[ind], regiony[ind])
-            segments((snp[!ind]+0.5*step),snp[!ind], regionx[!ind], regiony[!ind])
-        }
+#        if (all(ind==1))
+#            segments(snp[ind] , (snp[ind]-0.5*step), regionx[ind], regiony[ind])
+#        else if (all(ind==0))
+#            segments((snp[!ind]+0.5*step),snp[!ind], regionx[!ind], regiony[!ind])
+#        else{
+            segments((snp), (snp), regionx, regiony)
+#        }
  
         # Adding the text indicating Physical length of the region under study
         my.length.position <- c(x.length.position, y.length.position)
         xpos <- 0.65*(imagex.1+imagex.0) + my.length.position[1]
-        ypos <- 0.5*(imagey.1+imagey.0) + my.length.position[2]
+        ypos <- 0.3*(imagey.1+imagey.0) + my.length.position[2]
 
 	if (distances=="physical")
         	text(xpos,ypos,paste("Physical Length:", round((total.dist/1000),1),"kb",sep=""), adj=0, cex=0.9)
@@ -107,16 +112,16 @@
             ind <- names(gdat) == SNP.name[i]
             snpx <- snp[ind]
             snpy <- snp[ind]
-            points(snpx,snpy, pch="*", cex=0.75, bg="blue", col="blue")
+            points(snpx,snpy, pch="*", cex=2, bg="blue", col="blue")
             text(regionx[ind], regiony[ind], paste(" ", SNP.name[i]), 
-                                   cex=0.6, adj=0, srt=-45, col="blue")
+                                   cex=0.8, adj=0, srt=-45, col="blue")
         } # for end
     } # if end
 
     # Drawing the Color Key:
-    a <- matrix(1:col.num, ncol=1)
+    a <- matrix(1:length(color), ncol=1)
     par(mar=c(2,0,1,2))
-    image(a, axes=FALSE, col=sort(heat.colors(col.num), decreasing=TRUE))
+    image(a, axes=FALSE, col=color[length(color):1])
     box(bty="o")
     mylable <- as.character(seq(from=0, to=1, length=11))
     axis(side=1, at=seq(from=0-1/11/2, to=1+1/11/2, length=11), labels=mylable)
