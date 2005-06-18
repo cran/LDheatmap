@@ -9,7 +9,7 @@
         if(!genetics::is.genotype(gdat[,i])) stop("column ",i," is not a genotype object\n")
     }
 
-   if(color=="blueToRed")
+   if(color[1]=="blueToRed")
 	color = rainbow(20, start=.7, end=0, s=.7)[20:1]
 
     # Sort data in ascending order of SNPs map position:
