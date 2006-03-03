@@ -1,74 +1,239 @@
 \name{LDheatmap}
 \alias{LDheatmap}
-\title{ This function produces a pairwise LD plot }
-\description{ \dQuote{LDheatmap} is used to produce a graphical display,
-  as a heat map, of linkage disequilibrium measures for SNPs. The heatmap is
-     a false color image in the upper-left diagonal of a square plot.
+\title{ This function produces a pairwise LD plot. }
+\description{ \code{LDheatmap} is used to produce a graphical display,
+  as a heat map, of pairwise linkage disequilibrium (LD) measurements for SNPs. 
+  The heat map is a false color image in the upper-left diagonal of a square plot.
      Optionally, a line parallel to the diagonal of the image indicating
      the physical or genetic map positions of the SNPs may be added, along
      with text reporting the total length of the genomic region considered.
-
 }
 \usage{
-LDheatmap(gdat, map.distance = 1000*(1:ncol(gdat)), distances="physical",
-LDmeas = "r", title = NULL, add.map = TRUE, x.image.show = 0.2, 
-y.image.show = 0.2, line.position = 0.2, x.length.position = 0, 
-y.length.position = 0, SNP.name = NULL, color=heat.colors(20))
+LDheatmap(gdat, genetic.distances=NULL, distances="physical", 
+	LDmeasure="r", title="Pairwise LD", add.map=TRUE, 
+	geneMapLocation=0.15, geneMapLabelX=0.5, geneMapLabelY=0.3, 
+	SNP.name=NULL, color=heat.colors(20), newpage=TRUE, 
+	name="ldheatmap")
 }
 \arguments{
-  \item{gdat}{ SNP data: a data frame of genotype objects. }
-  \item{map.distance}{ Vector of physical or genetic map distances, if known.
-          Physical distances should be in bases, genetic distances
-          should be in centiMorgans (cM). Default value is equispaced
-          markers, 1000 bases apart. }
-  \item{distances}{ A character string indicating whether distances are 
- 	  "physical" or "genetic" distances. Default is "physical". If
-          distances="physical", the text describing the total length of
-          the region will be "Physical Length:XXkb" where XX is the length
-          of the region in kilobases. If distances="genetic", the text
-          will be "Genetic Map Length:YYcM" where YY is the length of the
-          region in centiMorgans.}
-  \item{LDmeas}{ A character value of LD measurement - either
-    allelic correlation r\eqn{\mbox{\textasciicircum}}{^}2 or Lewontin's |D'|;
-    default = \dQuote{r} for r\eqn{\mbox{textasciicircum}}{^}2; type
-    \dQuote{D'} for |D'|. }
-  \item{title}{ Character string for the title of the
-    plot. Default = NULL will print out \dQuote{Pairwise LD}. }
-  \item{add.map}{ If TRUE, a diagonal line indicating the physical
-    or genetic map positions of the SNPs will be added to the plot. }
-  \item{x.image.show}{ A numeric value which will stretch the image
-    window horizontally by the given amount; default = 0.2
-    will expand the plot area horizontally by 0.2 units to the right. }
-  \item{y.image.show}{ A numeric value which will stretch the image
-    window vertically by the given amount; default = 0.2 will
-    expand the plot area vertically by 0.2 units downwards. }
-  \item{line.position}{ Modifies the position of the line
-    parallel to the diagonal of the matrix; the larger the value, the
-    farther it lies from the matrix diagonal.}
-  \item{x.length.position}{ Modifies x-coordinate of the text
-    labelling the total length of the genomic region being considered; e.g.,
-    x.length.position=0.1 will move the text to the right by
-    0.1 units from the original position in the upper right
-    quadrant of the plot. }
-  \item{y.length.position}{ Modifies y-coordinate of the text
-    labelling the total length of the genomic region being considered; e.g.,
-    y.length.position=0.1 will move the text upwards by 0.1 units
-    from the original position in the upper right quadrant of the plot. }
+  \item{gdat}{ SNP data: a data frame of genotype objects, a matrix of
+  	pairwise linkage disequilibrium measurements or an object of
+	class \code{"LDheatmap"} (the returned object of this function). }
+  \item{genetic.distances}{ A numeric vector of map locations of the SNPs,
+        in the same order as SNPs listed in \code{gdat},
+  	in terms of genetic or physical distances.
+	Physical distances should be in bases, genetic distances should be in
+	centiMorgans (cM).
+        When \code{gdat} is \emph{not} an object of class \code{LDheatmap}, the
+        default is a vector that represents equispaced markers, 1kb (1000 bases)
+        apart. When \code{gdat} \emph{is} an object of class \code{LDheatmap},
+        the \code{genetic.distances} argument is taken to be the
+        \code{genetic.distances} list item of \code{gdat}. }
+  \item{distances}{ A character string to specify whether the provided map locations
+  	are in physical or genetic distances.
+	If \code{distances="physical"} (default), the text describing the total
+	length of the region will be \dQuote{Physical Length:XXkb} where XX is the
+	length of the region in kilobases. If \code{distances="genetic"}, the
+        text will be \dQuote{Genetic Map Length:YYcM} where YY is
+        the length of the region in centiMorgans.
+        If \code{gdat} is an object of class LDheatmap,
+        \code{distances} is taken from \code{gdat}. } 
+  \item{LDmeasure}{ A character string specifying the measure of LD
+  	- either allelic correlation r\eqn{\mbox{\textasciicircum}}{^}2 or Lewontin's
+	|D\eqn{'}|; default = \code{"r"} for r\eqn{\mbox{\textasciicircum}}{^}2;
+	type \code{"D'"} for |D\eqn{'}|.  This argument is ignored when the user has already
+	supplied calculated LD measurements through \code{gdat} (i.e., when \code{gdat}
+	is a matrix of pairwise LD measurements or an object of class \code{"LDheatmap"}).}
+  \item{title}{ A character string for the main title of the plot.
+        Default is \dQuote{Pairwise LD}. }
+  \item{add.map}{ If \code{TRUE} (default), a diagonal line indicating the physical
+    	or genetic map positions of the SNPs will be added to the plot,
+    	along with text indicating the total length of the genetic region. }
+  \item{geneMapLocation}{ A numeric value specifying the position of the line
+    	parallel to the diagonal of the matrix; the larger the value, the
+    	farther it lies from the matrix diagonal. Ignored when \code{add.map=FALSE}.}
+  \item{geneMapLabelX}{ A numeric value specifying the x-coordinate
+    	of the text indicating the total length of the genomic region
+    	being considered. Ignored when \code{add.map=FALSE}.}
+  \item{geneMapLabelY}{ A numeric value specifying the y-coordinate
+    	of the text indicating the total length of the genomic region
+    	being considered. Ignored when \code{add.map=FALSE}.}
   \item{SNP.name}{ A vector of character string(s) of SNP name(s) to
-    be labelled in the plot. }
-  \item{color}{ A range of colors to be used for drawing the LDheatmap. 
-   The default is \code{\link[grDevices]{heat.colors}}.
-   User can specify a vector of colors or use the predefined color palettes \code{\link[grDevices]{cm.colors}}, 
-\code{\link[grDevices]{topo.colors}},
-\code{\link[grDevices]{terrain.colors}} or a subrange of
-\code{\link[grDevices]{rainbow.colors}}.
-A blue-to-red color palette can be obtained by setting color="blueToRed".}
+        be labelled on the diagonal drawn when \code{add.map=TRUE}.
+        Should match the names of SNPs in the provided object \code{gdat},
+        otherwise nothing is done. Ignored when \code{add.map=FALSE}. }
+  \item{color}{ A range of colors to be used for drawing the heat map.
+        Contiguous colors can be generated by the functions
+	\code{\link[grDevices]{heat.colors}},
+	\code{\link[grDevices]{cm.colors}},
+	\code{\link[grDevices]{terrain.colors}},
+	\code{\link[grDevices]{topo.colors}} or
+	\code{\link[grDevices]{rainbow.colors}}.
+	A contiguous blue-green-red color palette can be obtained by the
+	function \code{myRainbow.colors}. All these functions require a numeric
+	argument specifying the number of colors in the palette.
+	Default is \code{heat.colors(20)}.
+        In addition, a discrete blue-to-red color palette of 20 colors
+        can be obtained by setting \code{color = "blueToRed"}.
 }
-\details{ The distance vector of SNP positions, if provided, is
-  assumed to be in the same order as that of the SNPs in the data. }
-\section{Warnings}{ It is not possible to draw multiple LDheatmap plots
-  on a single graph area. }
-\author{ Ji-hyung Shin <jshinb@sfu.ca>, Sigal Blay <sblay@sfu.ca>, Brad McNeney <mcneney@stat.sfu.ca>, Jinko Graham <jgraham@cs.sfu.ca> }
-\seealso{ \code{\link[genetics]{LD}}, \code{\link[genetics]{genotype}}, \code{\link[graphics]{image}} }
-\examples{ demo(LDheatmap) }
+  \item{newpage}{ If \code{TRUE} (default), the heat map will be drawn on a new page. }
+  \item{name}{ A character string specifying the name of the LDheatmap
+               graphical object (grob) to be produced. }
+}
+\value{An object of class \code{"LDheatmap"} which contains the
+following components:
+\item{LDmatrix}{ The matrix of pairwise LD measurements plotted in the heat map. }
+\item{LDheatmapGrob}{ A grid graphical object (grob) representing the produced heat map. }
+\item{heatmapVP}{ The viewport in which the heat map is drawn.
+See \code{\link[grid]{viewport}}.}
+\item{genetic.distances}{The vector of the supplied physical or
+genetic map locations, or the vector of equispaced marker distances
+when no distance vector is supplied.}
+\item{distances}{ A character string specifying whether the provided map
+distances are physical or genetic. }
+
+The grob \code{LDheatmapGrob} has three grobs as its children (components).
+They are listed below along with their own children and respectively represent
+the color image with main title, genetic map and color key of the heat map:
+
+\code{"heatMap"} - \code{"heatmap"}, \code{"title"};
+
+\code{"geneMap"} - \code{"diagonal"}, \code{"segments"},
+
+\code{"title"}, \code{"symbols"}, \code{"SNPnames"}; and 
+
+\code{"Key"} - \code{"colorKey"}, \code{"title"}, \code{"labels"},
+
+\code{"ticks"}, \code{"box"}.
+}
+\note{  The produced heat map can be modified in two ways.
+	First, it is possible to edit \emph{interactively} the grob components of the heat map,
+	by using the function \code{\link[grid]{grid.edit}}; the function will not work if there is no
+	open graphical device showing the heat map.
+	Alternatively, the user can use the function \code{\link[grid]{editGrob}} and work with
+	the grob \code{LDheatmapGrob} returned by \code{LDheatmap}.
+	See Examples for usage.
+	
+	\code{LDheatmap()} uses \code{\link[grid]{Grid}}, which does not respond to \code{par()} setting.
+	For example, calling to functions such as \code{par(mfrow=*)} or \code{par(mfcol=*)}
+	does not work (an example of displaying multiple heat maps on one plot is illustrated in
+	the Examples).
+	}
+
+\author{ Ji-hyung Shin <jshinb@sfu.ca>, Sigal Blay <sblay@sfu.ca>,  Nicholas
+Lewin-Koh <nikko@hailmail.net>, Brad McNeney <mcneney@stat.sfu.ca>, Jinko
+Graham <jgraham@cs.sfu.ca> }
+\seealso{ \code{\link[genetics]{LD}}, \code{\link[genetics]{genotype}},
+\code{\link{grid}}, \code{\link{LDheatmap.highlight}},
+\code{\link{LDheatmap.marks}} }
+\examples{
+#Load the package's data set
+data(LDheatmapData)
+#Creates a data frame "HapMap.dat" of genotype data and a vector "distance"
+#of physical locations of the SNPs
+
+	#### Produce a heat map in blue-green-red color scheme ####
+MyHeatmap <- LDheatmap(HapMap.dat, genetic.distances = distance,
+  color = myRainbow.colors(20))
+
+# Prompt the user before starting a new page of graphics output
+# and save the original prompt settings in old.prompt.
+old.prompt <- grid.prompt(TRUE)
+
+# Highlight a certain LD block of interest:
+LDheatmap.highlight(MyHeatmap, i = 3, j = 8, col = "black", fill = "grey" )
+# Plot a symbol in the center of the pixel which represents LD between
+# the fourth and seventh SNPs:    
+LDheatmap.marks(MyHeatmap,  4,  7,  gp=gpar(cex=2),  pch = "*")
+
+	#### Modify the plot by using 'grid.edit' function ####
+#Draw a heat map where the SNPs "rs2283092" and "rs6979287" are labelled.
+LDheatmap(MyHeatmap, SNP.name = c("rs2283092", "rs6979287"))
+
+#Find the names of the top-level graphical objects (grobs) on the current display
+getNames()
+#[1] "ldheatmap"
+
+# Find the names of the component grobs of "ldheatmap"
+childNames(grid.get("ldheatmap"))
+#[1] "heatMap" "geneMap" "Key"
+
+#Find the names of the component grobs of heatMap
+childNames(grid.get("heatMap"))
+#[1] "heatmap" "title"
+
+#Find the names of the component grobs of geneMap
+childNames(grid.get("geneMap"))
+#[1] "diagonal" "segments" "title"    "symbols"  "SNPnames"
+
+#Find the names of the component grobs of Key
+childNames(grid.get("Key"))
+#[1] "colorKey" "title"    "labels"   "ticks"    "box"
+
+#Change the plotting symbols that identify SNPs rs2283092 and rs6979287
+#on the plot to bullets
+grid.edit("symbols", pch = 20, gp = gpar(cex = 1))
+
+#Change the color of the main title
+grid.edit(gPath("ldheatmap", "heatMap", "title"), gp = gpar(col = "red"))
+
+#Change size of SNP labels
+grid.edit(gPath("ldheatmap", "geneMap","SNPnames"), gp = gpar(cex=1.5))
+
+#Add a grid of white lines to the plot to separate pairwise LD measures
+grid.edit(gPath("ldheatmap", "heatMap", "heatmap"), gp = gpar(col = "white",
+    lwd = 2))
+
+
+	#### Modify a heat map using 'editGrob' function ####
+MyHeatmap <- LDheatmap(MyHeatmap, color = myRainbow.colors(20))
+
+new.grob <- editGrob(MyHeatmap$LDheatmapGrob, gPath("geneMap", "segments"),
+	gp=gpar(col="orange"))
+
+ ##Clear the old graphics object from the display before drawing the modified heat map:
+grid.newpage()
+
+grid.draw(new.grob)
+# now the colour of line segments connecting the SNP
+# positions to the LD heat map has been changed from black to orange.
+
+
+	#### Draw a resized heat map ####
+grid.newpage()
+
+pushViewport(viewport(width=0.5, height=0.5))
+LDheatmap(MyHeatmap, SNP.name = c("rs2283092", "rs6979287"), newpage=FALSE)
+popViewport()
+
+
+	#### Draw and modify two heat maps on one plot ####
+grid.newpage()
+
+  ##Draw and the first heat map on the left half of the graphics device
+VP1<-viewport(x=0, y=0, width=0.5, height=1, just=c("left","bottom"), name="vp1")
+pushViewport(VP1)
+LD1<-LDheatmap(MyHeatmap, color=myRainbow.colors(20), newpage=FALSE,
+	title="Pairwise LD in myRainbow.colors(20)",
+	SNP.name="rs6979572", geneMapLabelX=0.6,
+	geneMapLabelY=0.4, name="ld1")
+ upViewport()
+
+ ##Draw the second heat map on the right half of the graphics device
+VP2<-viewport(x=unit(0.5,"npc"), y=0, width=0.5, height=1, just=c("left","bottom"), name="vp2")
+pushViewport(VP2)
+LD2<-LDheatmap(MyHeatmap, newpage=FALSE, title="Pairwise LD in heat.colors(20)",
+	SNP.name="rs6979572", geneMapLabelX=0.6, geneMapLabelY=0.4, name="ld2")
+upViewport()
+
+ ##Modify the text size of main title of the first heat map.
+grid.edit(gPath("ld1", "heatMap","title"), gp=gpar(cex=1.5))
+
+ ##Modify the text size and color of the SNP label of the second heat map.
+ grid.edit(gPath("ld2", "geneMap","SNPnames"), gp=gpar(cex=1.5, col="DarkRed"))
+
+#Reset the user's setting for prompting on the graphics output
+#to the original value before running these example commands.
+ grid.prompt(old.prompt)
+}
 \keyword{ hplot }
