@@ -274,6 +274,6 @@ makeImageRect <- function(nrow, ncol, cols, name) {
   rectGrob(x=right, y=top, 
            width=1/ncol, height=1/nrow, 
            just=c("right", "top"), 
-           gp=gpar(col=NULL, fill=cols),
+           gp=gpar(col=NA, fill=cols),
            name=name)
 }
