@@ -1,3 +1,10 @@
-HapMap.dat	a data frame of SNP genetic data 
-distance	a vector of gene position on chromosome
-To get the sample data, use data(LDheatmapData)
+CEUSNP		a data frame of SNP genetic data 
+CEUDist		a vector of gene position on chromosome
+
+To get the first sample data, use data("CEUData")
+
+CHBJPTSNP	a data frame of SNP genetic data
+CHBJPTDist	a vector of gene position on chromosome
+
+To get the second sample data, use data("CHBJPTData")
+

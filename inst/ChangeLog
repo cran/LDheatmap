@@ -1,3 +1,30 @@
+0.2-2
+
+LDheatmap(): 
+* Added argument 'pop' to control whether or not the heatmap viewport 
+  is popped after drawing. The default is FALSE.
+* Added argument 'vp.name' specifying the name of heatmap viewport.
+* Now when SNP.name is provided and add.map=FALSE, the genetic map is not
+  drawn but the SNP names provided are marked on the heatmap plot.
+* Added argument 'add.key' to allow user to switch off the color legend.
+* Default 'color' changed from 'heat.colors(20)' to 'grey.colors(2)'.
+
+LDheatmap.marks() and LDheatmap.highlight():
+* These functions now attempt detection of the viewport in which the target 
+  heat map was drawn and navigate to it automatically. 
+
+Data sets:
+* Added example data-set: "CHBJPTData" containing "CHBJPTSNP" and "CHBJPTDist".
+* Changed supplied data files names from 'LDheatmapData', 'HapMap.dat' and
+  'distance' to 'CEUData', 'CEUSNP' and 'CEUDist' respectively.
+
+Other:
+* Removed 'myRainbow.colors()'
+* Added internal functions preDrawDetails.ldheatmap, postDrawDetails.ldheatmap,
+  preDrawDetails.symbols and postDrawDetails.symbols to enable resizing of 
+  text when user resizes the window after drawing the heatmap.
+* Simplified example of drawing two heat maps on same graphic device.
+
 0.2-1
  
 * Fixed bug of defaulting to black grid lines in new R version 2.3.0
