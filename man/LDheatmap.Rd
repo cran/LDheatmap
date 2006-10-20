@@ -142,8 +142,7 @@ Graham <jgraham@cs.sfu.ca> }
 \examples{
 #Load the package's data set
 data(CEUData)
-#Creates a data frame "CEUSNP" of genotype data and a vector
-"CEUDist"
+#Creates a data frame "CEUSNP" of genotype data and a vector "CEUDist"
 #of physical locations of the SNPs
 
 	#### Produce a heat map in a grey color scheme ####

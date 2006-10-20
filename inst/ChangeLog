@@ -1,3 +1,9 @@
+0.2-3
+
+demo(LDheatmap)
+Revise the examples so that they correspond to the ones in the 
+documentation of LDheatmap() function.
+
 0.2-2
 
 LDheatmap(): 
