@@ -118,6 +118,13 @@ the color image with main title, genetic map and color key of the heat map:
 
 \code{"ticks"}, \code{"box"}.
 }
+
+\references{  Shin J-H, Blay S, McNeney B and Graham J (2006). LDheatmap: 
+	      An R Function for Graphical Display of Pairwise Linkage 
+	      Disequilibria Between Single Nucleotide Polymorphisms. 
+	      Journal of Statistical Software, \bold{16} Code Snippet 3
+	   }
+ 
 \note{  The produced heat map can be modified in two ways.
 	First, it is possible to edit \emph{interactively} the grob components of the heat map,
 	by using the function \code{\link[grid]{grid.edit}}; the function will not work if there is no

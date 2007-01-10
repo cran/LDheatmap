@@ -1,3 +1,11 @@
+0.2-4
+* Added CITATION file to give information to the users how to cite the 
+  LDheatmap Code Snippet.
+* LDheatmap.Rd: added ``references" section. 
+* LDheatmap(): removed `recording' argument from the functions: 
+preDrawDetails.ldheatmap(), postDrawDetails.ldheatmap(), 
+preDrawDetails.symbols() and  postDrawDetails.symbols().
+
 0.2-3
 
 demo(LDheatmap)

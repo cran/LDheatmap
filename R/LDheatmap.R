@@ -220,12 +220,12 @@ include.lowest=TRUE))
 } # function LDheatmap ends
 
 
-preDrawDetails.ldheatmap <- function(x, recording) {
+preDrawDetails.ldheatmap <- function(x) {
   fontsize <- convertX(unit(1/20,"grobwidth", rectGrob()), "points")
   pushViewport(viewport(gp=gpar(fontsize=fontsize)))
 }
 
-postDrawDetails.ldheatmap <- function(x, recording) {
+postDrawDetails.ldheatmap <- function(x) {
   popViewport()
 }
 
@@ -259,12 +259,12 @@ fixed=TRUE)
     invisible(list(x=(i-0.5)*1/nSNP,y=(j-0.5)*1/nSNP))
 }
 
-preDrawDetails.symbols <- function(x, recording) {
+preDrawDetails.symbols <- function(x) {
   fontsize <- convertX(unit(1/20,"grobwidth", rectGrob()), "points")
   pushViewport(viewport(gp=gpar(fontsize=fontsize)))
 }
 
-postDrawDetails.symbols <- function(x, recording) {
+postDrawDetails.symbols <- function(x) {
   popViewport()
 }
 
