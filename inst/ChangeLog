@@ -1,3 +1,7 @@
+0.2-5
+* 'datalist': "CEUData" and "CHBJPTData" added to fix the 
+Warning Message.
+  
 0.2-4
 * Added CITATION file to give information to the users how to cite the 
   LDheatmap Code Snippet.
