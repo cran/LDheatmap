@@ -91,6 +91,9 @@ color palette for quantitative data is recommended,
 as outlined in the help page of 
 the \code{\link[RColorBrewer]{brewer.pal}()} function of the 
 \pkg{RColorBrewer} package.
+
+See the package vignette, of the same name as the package, for more 
+details.
 }
 \value{An object of class \code{"LDheatmap"} which contains the
 following components:

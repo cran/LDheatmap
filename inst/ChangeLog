@@ -1,3 +1,6 @@
+0.2-6
+* Added "See LDheatmap vignette for details." to the Details section.
+
 0.2-5
 * 'datalist': "CEUData" and "CHBJPTData" added to fix the 
 Warning Message.
