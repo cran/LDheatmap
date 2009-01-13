@@ -1,3 +1,8 @@
+0.2-7
+* Change lower.tri(draw=T) to lower.tri(draw=TRUE) in LDheatmap.R.
+* Replace the deprecated grid.prompt() function with devAskNewPage() for 
+the Example in the LDheatmap fumction documentation (LDheatmap.Rd).
+
 0.2-6
 * Added "See LDheatmap vignette for details." to the Details section.
 

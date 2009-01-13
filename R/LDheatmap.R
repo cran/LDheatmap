@@ -168,7 +168,7 @@
       if(nrow(gdat) != ncol(gdat))
         stop("The matrix of linkage disequilibrium measurements must be a square matrix")
       LDmatrix <- gdat
-      LDmatrix[lower.tri(LDmatrix, diag=T)] <- NA
+      LDmatrix[lower.tri(LDmatrix, diag=TRUE)] <- NA
     }
     else if(!missing(gdat))  
       stop(paste("No method for an object of class",class(gdat)))
