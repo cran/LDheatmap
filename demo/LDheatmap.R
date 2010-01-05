@@ -10,7 +10,7 @@ MyHeatmap <- LDheatmap(CEUSNP, genetic.distances = CEUDist,
 
 # Prompt the user before starting a new page of graphics output
 # and save the original prompt settings in old.prompt.
-old.prompt <- grid.prompt(TRUE)
+old.prompt <- devAskNewPage(ask = TRUE)
 
 # Highlight a certain LD block of interest:
 LDheatmap.highlight(MyHeatmap, i = 3, j = 8, col = "black", fill = "grey" )
@@ -114,4 +114,4 @@ panel=function(x, y, subscripts,...) {
 
 #Reset the user's setting for prompting on the graphics output
 #to the original value before running these example commands.
- grid.prompt(old.prompt)
+ devAskNewPage(old.prompt)

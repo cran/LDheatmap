@@ -89,7 +89,8 @@ order from bottom to top.
 For the argument \code{color}, an appropriate
 color palette for quantitative data is recommended, 
 as outlined in the help page of 
-the \code{\link[RColorBrewer]{brewer.pal}()} function of the 
+the \code{\link[RColorBrewer:ColorBrewer]{brewer.pal}()} function of 
+the 
 \pkg{RColorBrewer} package.
 
 See the package vignette, of the same name as the package, for more 
@@ -100,7 +101,7 @@ following components:
 \item{LDmatrix}{ The matrix of pairwise LD measurements plotted in the heat map. }
 \item{LDheatmapGrob}{ A grid graphical object (grob) representing the produced heat map. }
 \item{heatmapVP}{ The viewport in which the heat map is drawn. See
-\code{\link[grid]{viewport}}.}
+\link[grid:viewport]{viewport}.}
 \item{genetic.distances}{The vector of the supplied physical or
 genetic map locations, or the vector of equispaced marker distances
 when no distance vector is supplied.}
@@ -130,13 +131,16 @@ the color image with main title, genetic map and color key of the heat map:
  
 \note{  The produced heat map can be modified in two ways.
 	First, it is possible to edit \emph{interactively} the grob components of the heat map,
-	by using the function \code{\link[grid]{grid.edit}}; the function will not work if there is no
+	by using the function \code{\link[grid:grid.edit]{grid.edit}}; 
+the function will not work if there is no
 	open graphical device showing the heat map.
-	Alternatively, the user can use the function \code{\link[grid]{editGrob}} and work with
+	Alternatively, the user can use the function 
+\code{\link[grid:grid.edit]{editGrob}} and work with
 	the grob \code{LDheatmapGrob} returned by \code{LDheatmap}.
 	See Examples for usage.
 	
-	\code{LDheatmap()} uses \code{\link[grid]{Grid}}, which does not respond to \code{par()} settings.
+	\code{LDheatmap()} uses \code{\link[grid:Grid]{Grid}}, which 
+does not respond to \code{par()} settings.
 Hence modifying \code{par()} settings of \code{mfrow} and \code{mfcol} 
 will not work with \code{LDheatmap()}. The Examples section shows how to
 	display multiple heat maps on one plot without the use
@@ -147,7 +151,7 @@ of \code{par()}.
 Lewin-Koh <nikko@hailmail.net>, Brad McNeney <mcneney@stat.sfu.ca>, Jinko
 Graham <jgraham@cs.sfu.ca> }
 \seealso{ \code{\link[genetics]{LD}}, \code{\link[genetics]{genotype}},
-\code{\link[grid]{grid}}, \code{\link{LDheatmap.highlight}},
+\code{\link[grid:Grid]{Grid}}, \code{\link{LDheatmap.highlight}},
 \code{\link{LDheatmap.marks}} }
 \examples{
 #Load the package's data set

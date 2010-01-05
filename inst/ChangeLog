@@ -1,3 +1,8 @@
+0.2-8
+* Missing links in LDheatmap.Rd were taken care of.
+* Replace grid.prompt() with devAskNewPage() to fix the Warning Message 
+given when the 'demo' is running.
+ 
 0.2-7
 * Change lower.tri(draw=T) to lower.tri(draw=TRUE) in LDheatmap.R.
 * Replace the deprecated grid.prompt() function with devAskNewPage() for 
