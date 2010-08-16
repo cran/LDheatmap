@@ -1,3 +1,7 @@
+0.2-9
+* data/datalist: Took care of the Warning Message related to Undocumented
+data sets
+
 0.2-8
 * Missing links in LDheatmap.Rd were taken care of.
 * Replace grid.prompt() with devAskNewPage() to fix the Warning Message 

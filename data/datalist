@@ -1,12 +1,2 @@
-CEUData
-CEUSNP		a data frame of SNP genetic data 
-CEUDist		a vector of gene position on chromosome
-
-To get the first sample data, use data("CEUData")
-
-CHBJPTData
-CHBJPTSNP	a data frame of SNP genetic data
-CHBJPTDist	a vector of gene position on chromosome
-
-To get the second sample data, use data("CHBJPTData")
-
+CEUData: CEUSNP CEUDist
+CHBJPTData: CHBJPTSNP CHBJPTDist
