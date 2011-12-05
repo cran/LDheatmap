@@ -8,7 +8,8 @@ Retrieve average rates of recombination from the deCODE genetic map from the UCS
 Genome Browser and add them to an LDheatmap object.
 }
 \usage{
-LDheatmap.addRecombRate(LDheatmap, chromosome, genome = NULL, recombRateLocation = 0.02, view = "dense")
+LDheatmap.addRecombRate(LDheatmap, chromosome, genome = NULL, recombRateLocation = 0.02,
+view = "dense")
 }
 \arguments{
   \item{LDheatmap}{

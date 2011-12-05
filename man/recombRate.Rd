@@ -7,7 +7,8 @@ Produce recombination rate plot.
 Plot average rates of recombination from the deCODE genetic map for a specified genetic sequence.
 }
 \usage{
-recombRate(minRange, maxRange, chromosome, genome = "hg19", vp = viewport(x = 0, y = 0.99, height = 0.04, just = c("left", "top")), view = "dense")
+recombRate(minRange, maxRange, chromosome, genome = "hg19", vp = viewport(x = 0, 
+y = 0.99, height = 0.04, just = c("left", "top")), view = "dense")
 }
 \arguments{
   \item{minRange}{

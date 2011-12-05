@@ -32,12 +32,24 @@ LDheatmap.highlight <- function(LDheatmap, i, j, fill="NA", col="black", lwd=1, 
      y <- c(i,j,j)/nSNP
      cbind(x,y)
   }
+  backboneFlip <- function(i,j,nSNP){
+     x <- c(i,j,j)/nSNP
+     y <- c(i-1,i-1,j-1)/nSNP
+     cbind(x,y)
+  }
 
-  jiggle <- function(i,j,nSNP){
+  zigzag <- function(i,j,nSNP){
     c1 <- j-i
     nvert <- (2*c1)-1
     x <-c(j-1,rep((j-2):(j-c1),each=2))
     y <- c(rep((j-1):(j-(c1-1)),each=2),j-c1)
+    cbind(x,y)/nSNP 
+  }
+  zigzagFlip <- function(i,j,nSNP){
+    c1 <- j-i
+    nvert <- (2*c1)-1
+    y <-c(j-1,rep((j-2):(j-c1),each=2))
+    x <- c(rep((j-1):(j-(c1-1)),each=2),j-c1)
     cbind(x,y)/nSNP 
   }
                        
@@ -51,7 +63,8 @@ LDheatmap.highlight <- function(LDheatmap, i, j, fill="NA", col="black", lwd=1, 
      i <- j
      j <- h
   }
-  pgon <- data.frame(rbind(backbone(i,j,nSNP), jiggle(i,j,nSNP)))
+  pgon <- data.frame(rbind(backbone(i,j,nSNP), zigzag(i,j,nSNP)))
+  if(!is.null(LDheatmap$flipVP)) pgon <- data.frame(rbind(backboneFlip(i,j,nSNP), zigzagFlip(i,j,nSNP)))
   ## Square or almost square interior Blocks
   names(pgon) <- c("x","y")
   heatmap.vp <- LDheatmap$heatmapVP$name

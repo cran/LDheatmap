@@ -8,7 +8,8 @@ Retrieve genes from the UCSC Genome Browser, generate the genes plot and add it 
 an LDheatmap object.
 }
 \usage{
-LDheatmap.addGenes(LDheatmap, chromosome, genome = NULL, genesLocation = 0.02, splice_variants = TRUE, non_coding = TRUE)
+LDheatmap.addGenes(LDheatmap, chromosome, genome = NULL, genesLocation = 0.02, 
+splice_variants = TRUE, non_coding = TRUE)
 }
 \arguments{
   \item{LDheatmap}{

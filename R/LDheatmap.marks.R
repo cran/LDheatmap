@@ -38,6 +38,8 @@ LDheatmap.marks <- function(LDheatmap, i, j=NULL, pch=20, gp=gpar(...), ...){
       i[ind>0] <- j[ind>0]
       j[ind>0] <- ind[ind>0]
     }
+    pts<-list(x=(i-0.5)*1/nSNP,y=(j-0.5)*1/nSNP)
+    if(!is.null(LDheatmap$flipVP)) pts<-list(x=(j-0.5)*1/nSNP,y=(i-0.5)*1/nSNP)
     heatmap.vp <- LDheatmap$heatmapVP$name
     #If heatmap.vp is on the grid display list, i.e., it is included in the 
     #returned value of current.vpTree(), a[1] <- 1 else a[1] <- NA
@@ -45,12 +47,12 @@ LDheatmap.marks <- function(LDheatmap, i, j=NULL, pch=20, gp=gpar(...), ...){
     if(!is.na(a[1]))   seekViewport(heatmap.vp)
     else               pushViewport(LDheatmap$heatmapVP)
     if (!is.null(LDheatmap$flipVP)) pushViewport(LDheatmap$flipVP)
-    Symbols <- pointsGrob((i-0.5)*1/nSNP, (j-0.5)*1/nSNP, pch=pch, gp=gp, name="symbols")
+    Symbols <- pointsGrob(pts$x, pts$y, pch=pch, gp=gp, name="symbols")
     symbols <- gTree(children=gList(Symbols), name="Symbols", cl="symbols")
     grid.draw(symbols)
     if(!is.na(a[1]))  upViewport(0)  #back to the root viewport
     else              popViewport() 
-    invisible(list(x=(i-0.5)*1/nSNP,y=(j-0.5)*1/nSNP))
+    invisible(pts)
 }
 
 

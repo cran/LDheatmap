@@ -8,7 +8,8 @@ Retrieves genes from the UCSC Genome Browser and generate the genes plot.
 }
 \usage{
 plotGenes(minRange, maxRange, chromosome, genome = "hg19", plot_lines_distance = 0.03,
-vp = viewport(x = 0, y = 0.99, just = c("left", "top")), splice_variants = TRUE, non_coding = TRUE)
+vp = viewport(x = 0, y = 0.99, just = c("left", "top")), splice_variants = TRUE, 
+non_coding = TRUE)
 }
 \arguments{
   \item{minRange}{

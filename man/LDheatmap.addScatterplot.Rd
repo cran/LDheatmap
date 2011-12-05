@@ -8,7 +8,8 @@ Add a scatter plot to an LDheatmap object.
 The x axis is the map of genetic distances of the SNPs.
 }
 \usage{
-LDheatmap.addScatterplot(LDheatmap, P, height = 0.2, ylab = NULL, ylim=NULL,type = "points")
+LDheatmap.addScatterplot(LDheatmap, P, height = 0.2, ylab = NULL, ylim=NULL,
+type = "points")
 }
 \arguments{
   \item{LDheatmap}{
