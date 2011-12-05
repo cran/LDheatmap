@@ -1,3 +1,8 @@
+0.9-1
+* bug-fix: when flip=TRUE and SNP.name not null, the gene map was being
+plotted over the heatmap. Thanks to Martin, Chia-Hsin Liu for reporting
+the bug
+
 0.9
 * Renumber version to prepare for release of a version 1.0
 

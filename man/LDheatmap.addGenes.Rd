@@ -55,7 +55,7 @@ Sigal Blay <sblay@sfu.ca>
 \examples{
 \dontrun{
 data(GIMAP5.CEU) 
-ll<-LDheatmap(GIMAP5.CEU$snp.data,GIMAP5.CEU$snp.support$Position)
+ll<-LDheatmap(GIMAP5.CEU$snp.data,GIMAP5.CEU$snp.support$Position,flip=TRUE)
 # Add gene plot
 llplusgenes <- LDheatmap.addGenes(ll, chr="chr7", genome="hg18")
 }

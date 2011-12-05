@@ -33,9 +33,8 @@ Sigal Blay <sblay@sfu.ca>
 }
 \examples{
 % Add an empty rectangle frame
-data(CEUData)
-smallmap <- LDheatmap(CEUSNP, genetic.distances = CEUDist,
-  color = grey.colors(20))
-ll<-LDheatmap.addGrob(smallmap, rectGrob())
+data(GIMAP5.CEU) 
+ll<-LDheatmap(GIMAP5.CEU$snp.data,GIMAP5.CEU$snp.support$Position,flip=TRUE)
+llplusgrob<-LDheatmap.addGrob(ll, rectGrob())
 }
 \keyword{ hplot }

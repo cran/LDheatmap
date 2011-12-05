@@ -72,7 +72,7 @@ is \code{grey.colors(20)}.}
 where the heat map is going to be drawn. }
   \item{pop}{ If \code{TRUE}, the viewport where the heat map is drawn is
 \code{pop}ped (i.e. removed) from the viewport tree after drawing. Default=\code{FALSE}. }
-  \item{flip}{ If \code{TRUE}, the LDheatmap plot is rotated 270 degrees. Default is \code{FALSE}.}
+  \item{flip}{ If \code{TRUE}, the LDheatmap plot is flipped below a horizontal line, in the style of Haploview. Default is \code{FALSE}.}
   \item{text}{ If \code{TRUE}, the LD measurements are printed on each cell. }
 } 
 \details{
@@ -94,8 +94,10 @@ the \code{\link[RColorBrewer:ColorBrewer]{brewer.pal}()} function of
 the 
 \pkg{RColorBrewer} package.
 
-See the package vignette, of the same name as the package, for more 
-details.
+See the package vignette \code{LDheatmap} for more examples and details
+of the implementation. Examples of adding ``tracks'' of genomic
+annotation above a flipped heatmap are in the package vignette
+\code{addTracks}.
 }
 \value{An object of class \code{"LDheatmap"} which contains the
 following components:
@@ -161,10 +163,16 @@ data(CEUData)
 #Creates a data frame "CEUSNP" of genotype data and a vector "CEUDist"
 #of physical locations of the SNPs
 
-	#### Produce a heat map in a grey color scheme ####
+# Produce a heat map in a grey color scheme
 
 MyHeatmap <- LDheatmap(CEUSNP, genetic.distances = CEUDist,
   color = grey.colors(20))
+
+# Same heatmap, flipped below a horizontal gene map -- for examples of 
+# adding genomic annotation tracks to a flipped heatmap see 
+# vignette("addTracks")
+
+flippedHeatmap<-LDheatmap(MyHeatmap,flip=TRUE)
 
 # Prompt the user before starting a new page of graphics output
 # and save the original prompt settings in old.prompt.
