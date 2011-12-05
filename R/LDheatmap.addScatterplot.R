@@ -51,7 +51,7 @@ LDheatmap.addScatterplot <- function(LDheatmap, P, height=0.2, ylab=NULL, ylim=N
      association <- addGrob(association, graph_points)
   }
   if (type=="lines" || type == "both") {
-     graph_lines <- linesGrob(LDheatmap$genetic.distances, P, default.unit="native", name="lines")
+     graph_lines <- linesGrob(LDheatmap$genetic.distances, P, default.units="native", name="lines")
      association <- addGrob(association, graph_lines)
   }
   LDheatmap$LDheatmapGrob <- addGrob(LDheatmap$LDheatmapGrob, association)

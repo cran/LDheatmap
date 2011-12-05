@@ -106,6 +106,7 @@
                        distances="physical", vp=NULL, 
                        SNP.name=NULL, ind=0, flip=FALSE){
     snp <- ((1:nsnps-1) + 0.5) / nsnps
+#####################
     if(add.map){
     min.dist <- min(genetic.distances) 
     max.dist <- max(genetic.distances)
@@ -147,7 +148,6 @@
     title <- textGrob(mapLabel, geneMapLabelX, geneMapLabelY,
               gp=gpar(cex=0.9), just="left", name="title")
 
-
     geneMap <- gTree(children=gList(diagonal, segments, title), name="geneMap")
 
     ## Labelling some SNPs 
@@ -159,15 +159,17 @@
       if (flip) {
         lenght_SNP_name <- max(nchar(SNP.name))
         long_SNP_name <- paste(rep(8,lenght_SNP_name), collapse="")
-        name_gap <- convertWidth(grobWidth(textGrob(long_SNP_name)), "npc",valueOnly=TRUE)
-        diagonal<-linesGrob(seq.x+name_gap, seq.y-name_gap, gp=gpar(lty=1), name="diagonal", vp=vp)
-        segments <- segmentsGrob(snp+name_gap, snp-name_gap, regionx+name_gap, regiony-name_gap, name="segments", vp=vp)
+        name_gap <- convertWidth(grobWidth(textGrob(long_SNP_name)), "npc",valueOnly=TRUE)/sqrt(2)
+        diagonal<-linesGrob(seq.x, seq.y, gp=gpar(lty=1), name="diagonal", vp=vp)
+        #diagonal<-linesGrob(seq.x+name_gap, seq.y-name_gap, gp=gpar(lty=1), name="diagonal", vp=vp)
+        segments <- segmentsGrob(snp, snp, regionx, regiony, name="segments", vp=vp)
+        #segments <- segmentsGrob(snp+name_gap, snp-name_gap, regionx+name_gap, regiony-name_gap, name="segments", vp=vp)
         symbols <- NULL
         SNPnames <- textGrob(SNP.name, just="left", rot=-45,
-              snp[ind], snp[ind], gp=gpar(cex=0.6, col="blue"), name="SNPnames", vp=vp)
+              regionx[ind]-name_gap, regiony[ind]+name_gap, gp=gpar(cex=0.6, col="blue"), name="SNPnames", vp=vp)
+              # snp[ind], snp[ind], gp=gpar(cex=0.6, col="blue"), name="SNPnames", vp=vp)
         title <- editGrob(title, y=unit(geneMapLabelY+name_gap, "npc"))
       }
-
       geneMap <- gTree(children=gList(diagonal, segments, title, symbols, SNPnames),name="geneMap")
     }} # if(add.map) end
 
