@@ -1,6 +1,14 @@
+0.9
+* Renumber version to prepare for release of a version 1.0
+
+0.3
+* Added arguments 'flip', 'text' to LDheatmap().
+* Added functions LDheatmap.plotGenes, plotGenes, LDheatmap.recombRate, 
+  recombRate, LDheatmap.addAssociation.
+* Added internal functions constructVP, drawLDheatmapGrob, moveTitles.
+
 0.2-9
-* data/datalist: Took care of the Warning Message related to Undocumented
-data sets
+* data/datalist: Took care of the warning message related to undocumented data sets
 
 0.2-8
 * Missing links in LDheatmap.Rd were taken care of.

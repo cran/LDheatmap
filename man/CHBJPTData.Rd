@@ -39,10 +39,9 @@ data(CHBJPTData)
 #Now do our panel plot with LDheatmaps in the panels
 library(lattice)
 pop<-factor(c(rep("chinese", 45), rep("japanese", 45)))
-xyplot(1~1|pop,pch=" ", scales=list(draw=FALSE),xlab="",ylab="")
-trellis.focus("panel",1,1)
-LDheatmap(CHBJPTSNP[pop=="chinese",],CHBJPTDist,newpage=FALSE)
-trellis.focus("panel",2,1)
-LDheatmap(CHBJPTSNP[pop=="japanese",],CHBJPTDist,newpage=FALSE)
+xyplot(1:nrow(CHBJPTSNP) ~ 1:nrow(CHBJPTSNP) | pop, type="n",
+scales=list(draw=FALSE), xlab="", ylab="",
+panel=function(x, y, subscripts,...) {
+LDheatmap(CHBJPTSNP[subscripts,], CHBJPTDist, newpage=FALSE)})
 }
 \keyword{datasets}

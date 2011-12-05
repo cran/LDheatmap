@@ -11,13 +11,12 @@
 \usage{
 LDheatmap(gdat, genetic.distances=NULL, distances="physical",
 	LDmeasure="r", title="Pairwise LD", add.map=TRUE, add.key=TRUE,
-	geneMapLocation=0.15, geneMapLabelX=0.5, geneMapLabelY=0.3,
-	SNP.name=NULL, color=grey.colors(20), newpage=TRUE,
-	name="ldheatmap", vp.name=NULL, pop=FALSE)
+	geneMapLocation=0.15, geneMapLabelX=NULL, geneMapLabelY=NULL,
+	SNP.name=NULL, color=NULL, newpage=TRUE,
+	name="ldheatmap", vp.name=NULL, pop=FALSE, flip=NULL, text=FALSE)
 }
 \arguments{
-  \item{gdat}{ SNP data: a data frame of genotype objects, a square matrix
-of
+  \item{gdat}{ SNP data: a data frame of genotype objects, a square matrix of
   	pairwise linkage disequilibrium measurements or an object of
 	class \code{"LDheatmap"} (the returned object of this function).
 }
@@ -73,6 +72,8 @@ is \code{grey.colors(20)}.}
 where the heat map is going to be drawn. }
   \item{pop}{ If \code{TRUE}, the viewport where the heat map is drawn is
 \code{pop}ped (i.e. removed) from the viewport tree after drawing. Default=\code{FALSE}. }
+  \item{flip}{ If \code{TRUE}, the LDheatmap plot is rotated 270 degrees. Default is \code{FALSE}.}
+  \item{text}{ If \code{TRUE}, the LD measurements are printed on each cell. }
 } 
 \details{
 For \code{gdat}, any square matrix with values between 0 and 1
@@ -107,6 +108,7 @@ genetic map locations, or the vector of equispaced marker distances
 when no distance vector is supplied.}
 \item{distances}{ A character string specifying whether the provided map
 distances are physical or genetic. }
+\item{color}{ The range of colors used for drawing the heat map. }
 
 The \code{grob} \code{LDheatmapGrob} has three \code{grob}s as its children (components).
 They are listed below along with their own children and respectively represent
@@ -173,6 +175,12 @@ LDheatmap.highlight(MyHeatmap, i = 3, j = 8, col = "black", fill = "grey" )
 # Plot a symbol in the center of the pixel which represents LD between
 # the fourth and seventh SNPs:
 LDheatmap.marks(MyHeatmap,  4,  7,  gp=gpar(cex=2),  pch = "*")
+
+
+        #### Use an RGB pallete for the color scheme ####
+rgb.palette <- colorRampPalette(rev(c("blue", "orange", "red")), space = "rgb")
+LDheatmap(MyHeatmap, color=rgb.palette(18))
+
 
 	#### Modify the plot by using 'grid.edit' function ####
 #Draw a heat map where the SNPs "rs2283092" and "rs6979287" are labelled.
@@ -264,12 +272,23 @@ grid.edit(gPath("ld1", "heatMap","title"), gp=gpar(cex=1.5))
 data(CHBJPTData)
 # Make a variable which indicates Chinese vs. Japanese
 pop <- factor(c(rep("chinese",45), rep("japanese",45)))
-library(lattice)
+require(lattice)
 
 xyplot(1:nrow(CHBJPTSNP) ~ 1:nrow(CHBJPTSNP) | pop,
 type="n", scales=list(draw=FALSE), xlab="", ylab="",
 panel=function(x, y, subscripts,...) {
           LDheatmap(CHBJPTSNP[subscripts,], CHBJPTDist, newpage=FALSE) })
+
+data(GIMAP5)
+require(lattice)
+n<-nrow(GIMAP5$snp.data)
+xyplot(1:n ~ 1:n | GIMAP5$subject.support$pop,
+type="n", scales=list(draw=FALSE), xlab="", ylab="",
+panel=function(x, y, subscripts,...) {
+          LDheatmap(GIMAP5$snp.data[subscripts,], 
+          GIMAP5$snp.support$Position, SNP.name="rs6598", newpage=FALSE) })
+
+
 
 #Reset the user's setting for prompting on the graphics output
 #to the original value before running these example commands.

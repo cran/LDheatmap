@@ -1,0 +1,2 @@
+export(LDheatmap,plotGenes,recombRate)
+exportPattern("LDheatmap.")
