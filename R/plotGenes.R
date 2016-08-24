@@ -33,13 +33,11 @@ plotGenes<- function(minRange, maxRange, chromosome, genome="hg19", plot_lines_d
   vp$xscale <- c(minRange, maxRange)
   vp$name <- "transcriptsVP"
 
-  require(rtracklayer)
-  require(GenomicRanges)
-  session <- browserSession()
-  genome(session) <- genome
+  session <- rtracklayer::browserSession()
+  GenomeInfoDb::genome(session) <- genome
 
-  query1<-ucscTableQuery(session, "knownGene", GRangesForUCSCGenome(genome, chromosome, IRanges(minRange, maxRange)))
-  t<-getTable(query1)
+  query1<-rtracklayer::ucscTableQuery(session, "knownGene", rtracklayer::GRangesForUCSCGenome(genome, chromosome, IRanges::IRanges(minRange, maxRange)))
+  t<-rtracklayer::getTable(query1)
   if (!dim(t)[1]) {	# we got an empty table
     print ("The genetic region of the data does not correspond to any genes in the UCSC genome browser")
     return()
@@ -61,8 +59,8 @@ plotGenes<- function(minRange, maxRange, chromosome, genome="hg19", plot_lines_d
   # Exclude splice variants
   if (!splice_variants) {
      # Get canonical splice variant of each gene
-     query2 <- ucscTableQuery(session, "knownGene", GRangesForUCSCGenome(genome,chromosome, IRanges(minRange, maxRange)), table="knownCanonical")
-     tcanon<-getTable(query2)
+     query2 <- rtracklayer::ucscTableQuery(session, "knownGene", rtracklayer::GRangesForUCSCGenome(genome,chromosome, IRanges::IRanges(minRange, maxRange)), table="knownCanonical")
+     tcanon<-rtracklayer::getTable(query2)
 
      ind<-(t$name %in% as.character(tcanon$transcript))
      t<-subset(t, ind)
@@ -72,9 +70,9 @@ plotGenes<- function(minRange, maxRange, chromosome, genome="hg19", plot_lines_d
   # Get gene names
   t[, "gene_name"] <- ""
   tbl <- "kgXref"
-  query2<-ucscTableQuery(session, "knownGene", 
-	GRangesForUCSCGenome(genome,chromosome,IRanges(minRange, maxRange)), table=tbl, names=t[,"name"])
-  t1<-getTable(query2)
+  query2<-rtracklayer::ucscTableQuery(session, "knownGene", 
+	rtracklayer::GRangesForUCSCGenome(genome,chromosome,IRanges::IRanges(minRange, maxRange)), table=tbl, names=t[,"name"])
+  t1<-rtracklayer::getTable(query2)
   t1[,"kgID"]       <- as.character(t1[,"kgID"])       # convert factors to character strings
   t1[,"geneSymbol"] <- as.character(t1[,"geneSymbol"]) 
   
@@ -85,11 +83,11 @@ plotGenes<- function(minRange, maxRange, chromosome, genome="hg19", plot_lines_d
   }
 
   # Get gene colors
-  if ("kgColor" %in% tableNames(query1)) {
-    query3<-ucscTableQuery(session, "knownGene", 
-	GRangesForUCSCGenome(genome,chromosome,IRanges(minRange, maxRange)), table="kgColor", 
+  if ("kgColor" %in% rtracklayer::tableNames(query1)) {
+    query3<-rtracklayer::ucscTableQuery(session, "knownGene", 
+	rtracklayer::GRangesForUCSCGenome(genome,chromosome,IRanges::IRanges(minRange, maxRange)), table="kgColor", 
 	names=t[,"name"])
-    color_tbl<-getTable(query3)
+    color_tbl<-rtracklayer::getTable(query3)
   }
 
   # Determine the plot line number for each row in t and save it in column t$plot_line

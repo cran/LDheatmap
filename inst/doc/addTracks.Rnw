@@ -32,11 +32,14 @@ Section~\ref{sec:limitations}
 
 \section{Getting Started}
 
-First load the package, the example dataset \texttt{CIMAP5.CEU},
+First load the package, the chopsticks package
+(to use its \texttt{snp.matrix} data structure),
+the example dataset \texttt{CIMAP5.CEU},
 and an R data file that contains two
 LDheatmap objects and one picture that will be used in the vignette.
 <<load>>=
 library(LDheatmap)
+library(chopsticks)
 data(GIMAP5.CEU)
 load(system.file("extdata/addTracks.RData",package="LDheatmap"))
 @

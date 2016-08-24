@@ -26,6 +26,7 @@
 
 #_______________________Add marks to heatmap__________________________________##
 # Adds a symbol to the i,jth cell of the heatmap. 
+# Does this work when flip=TRUE?
 # The default is to add a symbol to the diagonal (j=i). 
 # i and j can be vectors.
 LDheatmap.marks <- function(LDheatmap, i, j=NULL, pch=20, gp=gpar(...), ...){

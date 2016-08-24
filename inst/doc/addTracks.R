@@ -11,6 +11,7 @@ foo <- packageDescription("LDheatmap")
 ### code chunk number 2: load
 ###################################################
 library(LDheatmap)
+library(chopsticks)
 data(GIMAP5.CEU)
 load(system.file("extdata/addTracks.RData",package="LDheatmap"))
 
@@ -28,7 +29,7 @@ ll<-LDheatmap(GIMAP5.CEU$snp.data,GIMAP5.CEU$snp.support$Position,flip=TRUE)
 
 
 ###################################################
-### code chunk number 5: addTracks.Rnw:93-94 (eval = FALSE)
+### code chunk number 5: addTracks.Rnw:96-97 (eval = FALSE)
 ###################################################
 ## llGenes <- LDheatmap.addGenes(ll, chr="chr7", genome="hg18")
 
@@ -68,7 +69,7 @@ grid.draw(llGenesRecomb$LDheatmapGrob)
 
 
 ###################################################
-### code chunk number 11: addTracks.Rnw:144-148
+### code chunk number 11: addTracks.Rnw:147-151
 ###################################################
 set.seed(1)
 atests<-runif(nrow(GIMAP5.CEU$snp.support))
@@ -149,13 +150,13 @@ names(ll$LDheatmapGrob$children)
 
 
 ###################################################
-### code chunk number 20: addTracks.Rnw:295-296
+### code chunk number 20: addTracks.Rnw:298-299
 ###################################################
 names(llGenesRecombScatter$LDheatmapGrob$children)
 
 
 ###################################################
-### code chunk number 21: addTracks.Rnw:306-308
+### code chunk number 21: addTracks.Rnw:309-311
 ###################################################
 names(llQplot$LDheatmapGrob$children)
 names(llImage$LDheatmapGrob$children)

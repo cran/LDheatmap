@@ -31,12 +31,10 @@ recombRate <- function(minRange, maxRange, chromosome, genome="hg19", vp=viewpor
   vp$xscale <- c(minRange, maxRange)
   vp$name <- "recombRate"
 
-  require(rtracklayer)
-  require(GenomicRanges)
-  session <- browserSession()
-  genome(session) <- genome
-  query<-ucscTableQuery(session, "recombRate", GRangesForUCSCGenome(genome, chromosome,IRanges(minRange, maxRange)))
-  t<-getTable(query)
+  session <- rtracklayer::browserSession()
+  GenomeInfoDb::genome(session) <- genome
+  query<-rtracklayer::ucscTableQuery(session, "recombRate", rtracklayer::GRangesForUCSCGenome(genome, chromosome,IRanges::IRanges(minRange, maxRange)))
+  t<-rtracklayer::getTable(query)
   if (!dim(t)[1]) {	# we got an empty table
     print ("The genetic region of the data does not correspond to any recombination rate data in the UCSC genome browser")
     return()

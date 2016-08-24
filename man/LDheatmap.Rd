@@ -16,7 +16,8 @@ LDheatmap(gdat, genetic.distances=NULL, distances="physical",
 	name="ldheatmap", vp.name=NULL, pop=FALSE, flip=NULL, text=FALSE)
 }
 \arguments{
-  \item{gdat}{ SNP data: a data frame of genotype objects, a square matrix of
+  \item{gdat}{ SNP data: a data frame of genotype objects,
+        a \code{snp.matrix} object, a square matrix of
   	pairwise linkage disequilibrium measurements or an object of
 	class \code{"LDheatmap"} (the returned object of this function).
 }
@@ -76,8 +77,15 @@ where the heat map is going to be drawn. }
   \item{text}{ If \code{TRUE}, the LD measurements are printed on each cell. }
 } 
 \details{
-For \code{gdat}, any square matrix with values between 0 and 1
-inclusive can be passed, and the values above the diagonal will be plotted.
+The input object \code{gdat} can be a data frame of \code{genotype} objects
+(a data structure from the \pkg{genetics} package), a \code{snp.matrix} object (a
+data structure from the \pkg{chopsticks} package), or 
+any square matrix with values between 0 and 1
+inclusive. 
+LD computation is much faster for \code{snp.matrix} objects than for
+\code{genotype} objects.
+In the case of a matrix of LD values between 0 and 1, 
+the values above the diagonal will be plotted.
 In the display of LD, SNPs appear in the order supplied by the 
 user as the horizontal and vertical coordinates are increased 
 and one moves along the off-diagonal line, from the bottom-left
@@ -158,6 +166,14 @@ Graham <jgraham@cs.sfu.ca> }
 \code{\link[grid:Grid]{Grid}}, \code{\link{LDheatmap.highlight}},
 \code{\link{LDheatmap.marks}} }
 \examples{
+# Pass LDheatmap a snp.matrix object
+set.seed(1)
+#make an example matrix of genotypes, coded as 0, 1 2 copies of an index allele
+gdat<-matrix(rbinom(n=500,size=2,prob=.5),ncol=5) 
+require(chopsticks)
+gdat<-as(gdat,"snp.matrix")
+LDheatmap(gdat,genetic.distances=c(0,1000,3000,4000,10000))
+
 #Load the package's data set
 data(CEUData)
 #Creates a data frame "CEUSNP" of genotype data and a vector "CEUDist"
