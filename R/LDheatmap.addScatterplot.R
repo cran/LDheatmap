@@ -25,6 +25,7 @@
 
 #______________________________________Add Scatter Plot________________________________##
 LDheatmap.addScatterplot <- function(LDheatmap, P, height=0.2, ylab=NULL, ylim=NULL, type="points") {
+  requireNamespace("grid")
   if (dim(LDheatmap$LDmatrix)[1] != length(P) ) {
      print ("Length of vector not equal number of SNPs in LDheatmap")
      return()

@@ -256,6 +256,7 @@ grid.edit(gPath("myLDgrob", "Key", "title"), gp=gpar(cex=1.25, col="red"))
 @
 or we can do so statically with
 <<>>=
+require(grid)
 LD.grob1 <- editGrob(MyHeatmap$LDheatmapGrob, gPath("heatMap", "title"), 
 		gp = gpar(cex=1.25, col="blue"))
 LD.grob2 <- editGrob(LD.grob1, gPath("geneMap","title"), 

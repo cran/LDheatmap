@@ -200,7 +200,7 @@ LDheatmapMap.add <- function(nsnps, add.map, genetic.distances,
   #____________________________________________________________________________#
   ## Calculate or extract LDmatrix
 
-    if(inherits(gdat,"snp.matrix")){
+    if(inherits(gdat,"SnpMatrix")){
       ## Exclude SNPs with less than 2 alleles:
       # NOT YET IMPLEMENTED for snp.matrix
       #gvars <- unlist(sapply(gdat, function(x) genetics::nallele(x) == 2))
@@ -213,19 +213,21 @@ LDheatmapMap.add <- function(nsnps, add.map, genetic.distances,
       o<-order(genetic.distances)
       genetic.distances<-genetic.distances[o]
       gdat<-gdat[,o]
-      myLD <- chopsticks::ld.snp(gdat,depth=ncol(gdat))
+      #myLD <- snpStats::ld(gdat,depth=ncol(gdat))
       if(LDmeasure=="r")
-        LDmatrix <- myLD[["rsq2"]]   
+        LDmatrix <- snpStats::ld(gdat,depth=ncol(gdat)-1,stats="R.squared")
       else if (LDmeasure=="D")
-        LDmatrix <- myLD[["dprime"]]  
+        LDmatrix <- snpStats::ld(gdat,depth=ncol(gdat)-1,stats="D.prime")
       else 
         stop("Invalid LD measurement, choose r or D'.")      
-      # LDmatrix is upper-left-triangular, rather than the usual upper-right.
-      nsnp<-length(genetic.distances)
-      tem<-matrix(NA,nrow=nsnp,ncol=nsnp)
-      for(i in 1:(nsnp-1)) { tem[i,(i+1):nsnp]<-LDmatrix[i,1:(nsnp-i)] }
-      LDmatrix<-tem # need something faster than the for loop
-      row.names(LDmatrix)<-attr(myLD,"snp.names")
+      LDmatrix <- as.matrix(LDmatrix)
+      LDmatrix[lower.tri(LDmatrix,diag=TRUE)] <- NA
+      ## LDmatrix is upper-left-triangular, rather than the usual upper-right.
+      #nsnp<-length(genetic.distances)
+      #tem<-matrix(NA,nrow=nsnp,ncol=nsnp)
+      #for(i in 1:(nsnp-1)) { tem[i,(i+1):nsnp]<-LDmatrix[i,1:(nsnp-i)] }
+      #LDmatrix<-tem # need something faster than the for loop
+      #row.names(LDmatrix)<-attr(myLD,"snp.names")
     }
 
     else if(inherits(gdat,"data.frame")){

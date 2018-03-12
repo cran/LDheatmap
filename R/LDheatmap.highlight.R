@@ -26,6 +26,7 @@
 #_______________________Highlight a region in the heatmap____________________________##
 LDheatmap.highlight <- function(LDheatmap, i, j, fill="NA", col="black", lwd=1, lty=1){
 
+  requireNamespace("grid")
   # Highlights the perimeter of selected cells in the heatmap as a block
   backbone <- function(i,j,nSNP){
      x <- c(i-1,i-1,j-1)/nSNP

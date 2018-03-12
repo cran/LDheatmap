@@ -25,6 +25,7 @@
 
 #_______________________Add a user-defined grob_____________________________________##
 LDheatmap.addGrob <- function(LDheatmap, grob, height=0.2) {
+  requireNamespace("grid")
   flip <- !is.null(LDheatmap$flipVP)
   vp <- constructVP(LDheatmap$LDheatmapGrob, 0.03, flip)
   vp$height <- unit(height, "npc")

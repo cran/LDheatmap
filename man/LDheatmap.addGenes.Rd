@@ -32,6 +32,8 @@ If \code{FALSE}, exclude non-coding genes.
 }
 }
 \details{
+Note: The \code{LDheatmap} object should have a non-NULL \code{genetic.distances}
+component. Otherwise the gene map will not be placed correctly. 
 The genes are color coded as follows: 
 black -- feature has a corresponding entry in the Protein Data Bank (PDB);
 dark blue -- transcript has been reviewed or validated by either the RefSeq, SwissProt or CCDS staff;

@@ -78,8 +78,8 @@ where the heat map is going to be drawn. }
 } 
 \details{
 The input object \code{gdat} can be a data frame of \code{genotype} objects
-(a data structure from the \pkg{genetics} package), a \code{snp.matrix} object (a
-data structure from the \pkg{chopsticks} package), or 
+(a data structure from the \pkg{genetics} package), a \code{SnpMatrix} object (a
+data structure from the \pkg{snpStats} package), or 
 any square matrix with values between 0 and 1
 inclusive. 
 LD computation is much faster for \code{snp.matrix} objects than for
@@ -170,8 +170,8 @@ Graham <jgraham@cs.sfu.ca> }
 set.seed(1)
 #make an example matrix of genotypes, coded as 0, 1 2 copies of an index allele
 gdat<-matrix(rbinom(n=500,size=2,prob=.5),ncol=5) 
-require(chopsticks)
-gdat<-as(gdat,"snp.matrix")
+require(snpStats)
+gdat<-as(gdat,"SnpMatrix")
 LDheatmap(gdat,genetic.distances=c(0,1000,3000,4000,10000))
 
 #Load the package's data set
@@ -198,7 +198,7 @@ old.prompt <- devAskNewPage(ask = TRUE)
 LDheatmap.highlight(MyHeatmap, i = 3, j = 8, col = "black", fill = "grey" )
 # Plot a symbol in the center of the pixel which represents LD between
 # the fourth and seventh SNPs:
-LDheatmap.marks(MyHeatmap,  4,  7,  gp=gpar(cex=2),  pch = "*")
+LDheatmap.marks(MyHeatmap,  4,  7,  gp=grid::gpar(cex=2),  pch = "*")
 
 
         #### Use an RGB pallete for the color scheme ####
@@ -208,6 +208,7 @@ LDheatmap(MyHeatmap, color=rgb.palette(18))
 
 	#### Modify the plot by using 'grid.edit' function ####
 #Draw a heat map where the SNPs "rs2283092" and "rs6979287" are labelled.
+require(grid)
 LDheatmap(MyHeatmap, SNP.name = c("rs2283092", "rs6979287"))
 
 #Find the names of the top-level graphical objects (grobs) on the current display

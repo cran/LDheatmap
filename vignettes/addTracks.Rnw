@@ -32,21 +32,21 @@ Section~\ref{sec:limitations}
 
 \section{Getting Started}
 
-First load the package, the chopsticks package
-(to use its \texttt{snp.matrix} data structure),
+First load the package, the snpStats package
+(to use its \texttt{SnpMatrix} data structure),
 the example dataset \texttt{CIMAP5.CEU},
 and an R data file that contains two
 LDheatmap objects and one picture that will be used in the vignette.
 <<load>>=
 library(LDheatmap)
-library(chopsticks)
+library(snpStats)
 data(GIMAP5.CEU)
 load(system.file("extdata/addTracks.RData",package="LDheatmap"))
 @
 The object \texttt{GIMAP5.CEU} is 
 is a list with two elements: \texttt{snp.data} and \texttt{snp.support}.
-\texttt{snp.data} is a \text{snp.matrix} object from the
-\texttt{chopsticks} package, containing the SNP genotypes. 
+\texttt{snp.data} is a \text{SnpMatrix} object from the
+\texttt{snpStats} package, containing the SNP genotypes. 
 Rows correspond to subjects and columns correspond to SNPs. 
 \texttt{snp.support} is a data frame whose rows correspond to SNPs and
 whose columns give information on the SNPs, such as their alleles and

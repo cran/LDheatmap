@@ -30,6 +30,7 @@
 # The default is to add a symbol to the diagonal (j=i). 
 # i and j can be vectors.
 LDheatmap.marks <- function(LDheatmap, i, j=NULL, pch=20, gp=gpar(...), ...){
+    requireNamespace("grid")
     nSNP <- dim(LDheatmap$LDmatrix)[1]
     if(is.null(j)) j<-i
     ind <- i>j

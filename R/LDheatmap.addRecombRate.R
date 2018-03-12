@@ -24,6 +24,7 @@
 
 #__________Add Recomb Rate track from UCSC genome Browser to an LDheatmap_________##
 LDheatmap.addRecombRate <- function(LDheatmap, chromosome, genome=NULL, recombRateLocation=0.02, view="dense") {
+  requireNamespace("grid")
   minRange <- min(LDheatmap$genetic.distances)
   maxRange <- max(LDheatmap$genetic.distances)
 #  minRange <- 129000000

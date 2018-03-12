@@ -39,7 +39,7 @@ the human genome. Nature 437, 1299-1320. 2005.
 }
 \seealso{ \code{\link{GIMAP5}}}
 \examples{ 
-require(chopsticks) # for the snp.matrix data structure
+require(snpStats) # for the SnpMatrix data structure
 data(GIMAP5.CEU) 
 LDheatmap(GIMAP5.CEU$snp.data,GIMAP5.CEU$snp.support$Position)
 }

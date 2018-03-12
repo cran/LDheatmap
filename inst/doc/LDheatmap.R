@@ -32,8 +32,9 @@ MyHeatmap <- LDheatmap(CEUSNP, CEUDist, LDmeasure="r",
 
 
 ###################################################
-### code chunk number 5: LDheatmap.Rnw:258-264
+### code chunk number 5: LDheatmap.Rnw:258-265
 ###################################################
+require(grid)
 LD.grob1 <- editGrob(MyHeatmap$LDheatmapGrob, gPath("heatMap", "title"), 
 		gp = gpar(cex=1.25, col="blue"))
 LD.grob2 <- editGrob(LD.grob1, gPath("geneMap","title"), 
@@ -50,7 +51,7 @@ grid.draw(LD.grob3)
 
 
 ###################################################
-### code chunk number 7: LDheatmap.Rnw:308-322 (eval = FALSE)
+### code chunk number 7: LDheatmap.Rnw:309-323 (eval = FALSE)
 ###################################################
 ## VP1<-viewport(x=0, y=0, width=0.5, height=1, just=c("left","bottom"), 
 ##                 name="vp1")
@@ -69,7 +70,7 @@ grid.draw(LD.grob3)
 
 
 ###################################################
-### code chunk number 8: LDheatmap.Rnw:337-339 (eval = FALSE)
+### code chunk number 8: LDheatmap.Rnw:338-340 (eval = FALSE)
 ###################################################
 ## grid.edit(gPath("ld1", "heatMap", "heatmap"), gp=gpar(col="white", lwd=2))
 ## grid.edit(gPath("ld2", "geneMap", "title"), gp=gpar(col="blue"))
@@ -97,7 +98,7 @@ grid.edit(gPath("ld2", "geneMap", "title"), gp=gpar(col="blue"))
 
 
 ###################################################
-### code chunk number 10: LDheatmap.Rnw:377-379
+### code chunk number 10: LDheatmap.Rnw:378-380
 ###################################################
 data("CHBJPTData")
 pop<-factor(c(rep("chinese", 45), rep("japanese", 45)))
@@ -114,19 +115,19 @@ panel=function(x,y,subscripts,...){
 
 
 ###################################################
-### code chunk number 12: LDheatmap.Rnw:399-400 (eval = FALSE)
+### code chunk number 12: LDheatmap.Rnw:400-401 (eval = FALSE)
 ###################################################
 ## data("CHBJPTData")
 
 
 ###################################################
-### code chunk number 13: LDheatmap.Rnw:413-414 (eval = FALSE)
+### code chunk number 13: LDheatmap.Rnw:414-415 (eval = FALSE)
 ###################################################
 ## pop<-factor(c(rep("chinese", 45), rep("japanese", 45)))
 
 
 ###################################################
-### code chunk number 14: LDheatmap.Rnw:418-423 (eval = FALSE)
+### code chunk number 14: LDheatmap.Rnw:419-424 (eval = FALSE)
 ###################################################
 ## library(lattice)
 ## xyplot(1:nrow(CHBJPTSNP)~1:nrow(CHBJPTSNP) | pop, type="n",

@@ -26,6 +26,8 @@
 
 #_______________________Add genes from UCSC genome Browser to an LDheatmap_____________##
 LDheatmap.addGenes <- function(LDheatmap, chromosome,  genome=NULL, genesLocation=0.02, splice_variants = TRUE, non_coding = TRUE) {
+  if(is.null(LDheatmap$genetic.distances)) stop("LDheatmap must have genetic distances")
+  requireNamespace("grid")
   minRange <- min(LDheatmap$genetic.distances)
   maxRange <- max(LDheatmap$genetic.distances)
 #  minRange <- 150124000 #150434000

@@ -11,7 +11,7 @@ foo <- packageDescription("LDheatmap")
 ### code chunk number 2: load
 ###################################################
 library(LDheatmap)
-library(chopsticks)
+library(snpStats)
 data(GIMAP5.CEU)
 load(system.file("extdata/addTracks.RData",package="LDheatmap"))
 

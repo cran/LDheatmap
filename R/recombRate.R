@@ -26,6 +26,7 @@
 
 #________________Plot recomb Rate track from UCSC genome Browser_______________##
 recombRate <- function(minRange, maxRange, chromosome, genome="hg19", vp=viewport(x=0, y=0.99, height=0.04, just=c("left", "top")), view="dense") {
+  requireNamespace("grid")
   map_len <- convertX(vp$width, "npc", valueOnly=TRUE)
   Range <- maxRange - minRange
   vp$xscale <- c(minRange, maxRange)
