@@ -69,7 +69,8 @@ being considered. Ignored when \code{add.map=FALSE}.}
 be labelled. Should match the names of SNPs in the provided object
 \code{gdat}, otherwise nothing is done.}
 
-\item{color}{A range of colors to be used for drawing the heat map. Default}
+\item{color}{A range of colors to be used for drawing the heat map. Default
+is \code{grey.colors(20)}.}
 
 \item{newpage}{If \code{TRUE} (default), the heat map will be drawn on a new page.}
 
