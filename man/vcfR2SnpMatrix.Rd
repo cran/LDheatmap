@@ -28,20 +28,20 @@ Convert a \code{\link[vcfR]{vcfR-class}} object into a list composed of genetic 
 In order to let \code{ vcfR2SnpMatrix} function properly, the input \code{\link[vcfR]{vcfR-class}} object is expected to be generated from a valid VCF file which contains only biallelic SNPs and includes a GT section.
 }
 \examples{
-# Load the vcfR object
-require(vcfR)
-data(vcfR_example)
-vcf <- vcf[8:12,]
+# Load the vcfR object -- requires vcfR
+ if (requireNamespace("vcfR", quietly = TRUE)) {
+   require(vcfR)
+   data(vcfR_example)
+   vcf <- vcf[8:12,]
+   # Extract needed genotype information
+   alist <- vcfR2SnpMatrix(vcf)
 
-# Extract needed genotype information
-alist <- vcfR2SnpMatrix(vcf)
-
-# Draw a pairwise LD plot using the extracted data
-LDheatmap(alist$data, alist$genetic.distance)
-
+   # Draw a pairwise LD plot using the extracted data
+   LDheatmap(alist$data, alist$genetic.distance)
+ }
 
 }
 \seealso{
-\code{\link[vcfR]{read.vcfR}}, \code{\link[snpStats]{SnpMatrix-class}}, \code{\link[snpStats]{XSnpMatrix-class}}
+\code{\link[vcfR]{io_vcfR}}, \code{\link[snpStats]{SnpMatrix-class}}, \code{\link[snpStats]{XSnpMatrix-class}}
 }
 \keyword{hplot}

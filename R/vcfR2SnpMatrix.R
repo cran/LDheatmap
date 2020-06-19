@@ -21,19 +21,19 @@
 #' \item{subjectID}{ A character vector of IDs of the subjects which the returned genotype data belong to. }
 #' \item{data}{An object of \code{\link[snpStats]{SnpMatrix-class}}/\code{\link[snpStats]{XSnpMatrix-class}} containing genotype data. }
 #' 
-#'@seealso  \code{\link[vcfR]{read.vcfR}}, \code{\link[snpStats]{SnpMatrix-class}}, \code{\link[snpStats]{XSnpMatrix-class}}
+#'@seealso  \code{\link[vcfR]{io_vcfR}}, \code{\link[snpStats]{SnpMatrix-class}}, \code{\link[snpStats]{XSnpMatrix-class}}
 #'
-#' @examples # Load the vcfR object
-#' require(vcfR)
-#' data(vcfR_example)
-#' vcf <- vcf[8:12,]
+#' @examples # Load the vcfR object -- requires vcfR
+#'  if (requireNamespace("vcfR", quietly = TRUE)) {
+#'    require(vcfR)
+#'    data(vcfR_example)
+#'    vcf <- vcf[8:12,]
+#'    # Extract needed genotype information
+#'    alist <- vcfR2SnpMatrix(vcf)
 #' 
-#' # Extract needed genotype information
-#' alist <- vcfR2SnpMatrix(vcf)
-#' 
-#' # Draw a pairwise LD plot using the extracted data
-#' LDheatmap(alist$data, alist$genetic.distance)
-#' 
+#'    # Draw a pairwise LD plot using the extracted data
+#'    LDheatmap(alist$data, alist$genetic.distance)
+#'  }
 #'
 #' @keywords hplot
 #' @export
