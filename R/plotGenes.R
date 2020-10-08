@@ -24,8 +24,8 @@
 #' @return A \code{grob} of gene plots.
 #' @references \url{http://genome.ucsc.edu/cgi-bin/hgTrackUi?g=knownGene}
 #' @author Sigal Blay <sblay@sfu.ca> and more
-#' @examples \dontrun{
-#'grid.newpage()
+#' @examples \donttest{
+#'grid::grid.newpage()
 #'plotGenes(149500000, 150000000, "chr7")
 #'}
 #' @keywords hplot
@@ -104,9 +104,12 @@ plotGenes<- function(minRange, maxRange, chromosome, genome="hg19", plot_lines_d
   # Get gene names
   t[, "gene_name"] <- ""
   tbl <- "kgXref"
+  # ucscTableQuery names argument is not working as of Aug. 2020. User Zhenhua Zhang supplied the following patch
   query2<-rtracklayer::ucscTableQuery(session, "knownGene", 
-	rtracklayer::GRangesForUCSCGenome(genome,chromosome,IRanges::IRanges(minRange, maxRange)), table=tbl, names=t[,"name"])
+                                      rtracklayer::GRangesForUCSCGenome(genome,chromosome,IRanges::IRanges(minRange, maxRange)), table=tbl)
+	# rtracklayer::GRangesForUCSCGenome(genome,chromosome,IRanges::IRanges(minRange, maxRange)), table=tbl, names=t[,"name"])
   t1<-rtracklayer::getTable(query2)
+  t1<-t1[(t1[,"kgID"] %in% t[,"name"]),]
   t1[,"kgID"]       <- as.character(t1[,"kgID"])       # convert factors to character strings
   t1[,"geneSymbol"] <- as.character(t1[,"geneSymbol"]) 
   
@@ -119,9 +122,11 @@ plotGenes<- function(minRange, maxRange, chromosome, genome="hg19", plot_lines_d
   # Get gene colors
   if ("kgColor" %in% rtracklayer::tableNames(query1)) {
     query3<-rtracklayer::ucscTableQuery(session, "knownGene", 
-	rtracklayer::GRangesForUCSCGenome(genome,chromosome,IRanges::IRanges(minRange, maxRange)), table="kgColor", 
-	names=t[,"name"])
+	rtracklayer::GRangesForUCSCGenome(genome,chromosome,IRanges::IRanges(minRange, maxRange)), 
+	# table="kgColor", names=t[,"name"])
+	table = "kgColor")
     color_tbl<-rtracklayer::getTable(query3)
+    color_tbl <- color_tbl[color_tbl$kgID %in% t[,"name"],]
   }
 
   # Determine the plot line number for each row in t and save it in column t$plot_line

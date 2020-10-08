@@ -29,13 +29,13 @@ A \code{grob} representing recombination rates.
 Plot average rates of recombination from the deCODE genetic map for a specified genetic sequence.
 }
 \examples{
-\dontrun{
-grid.newpage()
+\donttest{
+grid::grid.newpage()
 recombRate(129000000, 140000000, "chr7", "hg18")
-grid.newpage()
-pushViewport(viewport(width=0.8, x=0.2, just="left"))
+grid::grid.newpage()
+grid::pushViewport(grid::viewport(width=0.8, x=0.2, just="left"))
 recombRate(129000000, 140000000, "chr7", "hg18", view="full")
-popViewport()
+grid::popViewport()
 }
 }
 \references{

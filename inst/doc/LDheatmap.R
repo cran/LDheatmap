@@ -3,7 +3,7 @@
 ###################################################
 ### code chunk number 1: LDheatmap.Rnw:145-146
 ###################################################
-options(width=60) #controls the number of characters on a line (to protect the margin area)
+oldop <- options(width=60) #controls the number of characters on a line (to protect the margin area)
 
 
 ###################################################
@@ -134,5 +134,11 @@ panel=function(x,y,subscripts,...){
 ## scales=list(draw=FALSE), xlab="", ylab="", 
 ## panel=function(x,y,subscripts,...){
 ##  LDheatmap(CHBJPTSNP[subscripts,], CHBJPTDist, newpage=FALSE)})
+
+
+###################################################
+### code chunk number 15: LDheatmap.Rnw:428-429
+###################################################
+options(oldop) # reset options to user's original
 
 
