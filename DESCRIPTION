@@ -1,6 +1,6 @@
 Package: LDheatmap
-Version: 1.0-4
-Date: 2020-10-03
+Version: 1.0-6
+Date: 2022-05-03
 Title: Graphical Display of Pairwise Linkage Disequilibria Between SNPs
 Authors@R: c(person("Ji-Hyung","Shin",email="shin@sfu.ca", role="aut"),
              person("Sigal","Blay", email="sblay@sfu.ca",role="aut"),
@@ -14,7 +14,7 @@ Maintainer: Brad McNeney <mcneney@sfu.ca>
 Depends: R (>= 4.0)
 Imports: grid, genetics, snpStats, Rcpp
 Suggests: rtracklayer, GenomicRanges, GenomeInfoDb, IRanges, lattice,
-        ggplot2, vcfR
+        ggplot2, vcfR, RColorBrewer
 Description: Produces a graphical display, as a heat map, of measures
         of pairwise linkage disequilibria between single nucleotide polymorphisms (SNPs). Users may
         optionally include the physical locations or genetic map
@@ -26,11 +26,11 @@ Description: Produces a graphical display, as a heat map, of measures
 License: GPL-3
 URL: https://sfustatgen.github.io/LDheatmap/
 Repository: CRAN
-Date/Publication: 2020-10-08 10:00:02 UTC
-RoxygenNote: 7.1.0
+Date/Publication: 2022-04-24 00:20:02 UTC
+RoxygenNote: 7.1.2
 LinkingTo: Rcpp
 NeedsCompilation: yes
-Packaged: 2020-10-03 16:53:57 UTC; mcneney
+Packaged: 2022-04-22 21:43:29 UTC; mcneney
 Author: Ji-Hyung Shin [aut],
   Sigal Blay [aut],
   Nicholas Lewin-Koh [ctb],

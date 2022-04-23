@@ -61,6 +61,8 @@
 #_______________________Grab and Plot genes from the UCSC Genome Browser____________##
 plotGenes<- function(minRange, maxRange, chromosome, genome="hg19", plot_lines_distance=0.03,
 			vp=viewport(x=0, y=0.99, just=c("left", "top")), splice_variants = TRUE, non_coding = TRUE) {
+  message("Sorry, the plotGenes() and LDheatmap.addGenes() functions are currently unavailable due to recent changes in rtracklayer. Check back soon.")
+  return(NULL)
   requireNamespace("grid")
   map_len <- convertX(vp$width, "npc", valueOnly=TRUE)
   Range <- maxRange - minRange

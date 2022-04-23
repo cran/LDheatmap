@@ -10,7 +10,7 @@ oldop <- options(width=60) #controls the number of characters on a line (to prot
 ### code chunk number 2: LDheatmap.Rnw:148-150
 ###################################################
 library(LDheatmap)
-data("CEUData")
+data("CEUSNP"); data("CEUDist")
 
 
 ###################################################
@@ -100,7 +100,7 @@ grid.edit(gPath("ld2", "geneMap", "title"), gp=gpar(col="blue"))
 ###################################################
 ### code chunk number 10: LDheatmap.Rnw:380-382
 ###################################################
-data("CHBJPTData")
+data("CHBJPTSNP"); data("CHBJPTDist")
 pop<-factor(c(rep("chinese", 45), rep("japanese", 45)))
 
 

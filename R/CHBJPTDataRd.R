@@ -1,14 +1,14 @@
-#' @name CHBJPTData
-#' @aliases CHBJPTData
+#' @name CHBJPTSNP
+#' @aliases CHBJPTDist
 #' CHBJPTSNP
 #' CHBJPTDist
 #' hapmapJPT
 #' hapmapCHB
 #' @docType data
-#' @title Example of data set for LDHeatmap
+#' @title Example data set for LDHeatmap
 #' @description CHBJPTSNP:  Genotypes on 13 SNPs for 45 Chinese and 45 Japanese people
 #' CHBJPTDist: Physical map positions of the 13 SNPs
-#' @usage data(CHBJPTData)
+#' @usage data(CHBJPTSNP); data(CHBJPTDist)
 #' @format CHBJPTSNP: A dataframe of SNP genotypes.
 #'  Each row represents an individual.
 #'  Each column represents a SNP.
@@ -25,7 +25,7 @@
 #' @source International HapMap Project \url{ftp://ftp.ncbi.nlm.nih.gov/hapmap/}
 #' @references The International HapMap Consortium. A haplotype map of
 #' the human genome. Nature 437, 1299-1320. 2005.
-#' @examples  data(CHBJPTData)
+#' @examples  data(CHBJPTSNP); data(CHBJPTDist)
 #'#Now do our panel plot with LDheatmaps in the panels
 #'library(lattice)
 #'pop<-factor(c(rep("chinese", 45), rep("japanese", 45)))

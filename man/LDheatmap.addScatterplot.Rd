@@ -42,7 +42,7 @@ See Examples for usage.
 }
 \examples{
 # Load the package's data set
-data("CEUData")
+data("CEUSNP"); data("CEUDist")
 # Produce an LDheatmap object
 MyLDheatmap <- LDheatmap(CEUSNP, genetic.distances = CEUDist, flip = TRUE)
 # Generate an arbitrary vector of values to plot

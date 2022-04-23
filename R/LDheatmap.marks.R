@@ -45,7 +45,7 @@
 #'before calling \code{LDheatmap.marks()}.
 #' @author Nicholas Lewin-Koh <nikko@hailmail.net>, Ji-Hyung Shin <shin@sfu.ca>,
 #'Sigal Blay <sblay@sfu.ca>
-#' @examples data(CEUData)
+#' @examples data(CEUSNP); data(CEUDist)
 #'tt <- LDheatmap(CEUSNP, genetic.distances=CEUDist)
 #'LDheatmap.marks(tt, 15, 3, cex=1.6, col="blue")
 #' @keywords aplot

@@ -49,7 +49,7 @@
 #' @author Nicholas Lewin-Koh
 #'<nikko@hailmail.net>,
 #'Ji-Hyung Shin <shin@sfu.ca>, Sigal Blay <sblay@sfu.ca>
-#' @examples data(CEUData)
+#' @examples data(CEUSNP); data(CEUDist)
 #'tt <- LDheatmap(CEUSNP, genetic.distances=CEUDist)
 #'LDheatmap.highlight(tt, 3, 8, col="blue", fill="green", lwd=3, flipOutline=FALSE, crissCross=FALSE)
 #' @keywords aplot

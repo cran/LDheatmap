@@ -70,7 +70,7 @@ before calling \code{LDheatmap.highlight()}.
 }
 
 \examples{
-data(CEUData)
+data(CEUSNP); data(CEUDist)
 tt <- LDheatmap(CEUSNP, genetic.distances=CEUDist)
 LDheatmap.highlight(tt, 3, 8, col="blue", fill="green", lwd=3, flipOutline=FALSE, crissCross=FALSE)
 }

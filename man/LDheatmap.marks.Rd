@@ -64,7 +64,7 @@ before calling \code{LDheatmap.marks()}.
 }
 
 \examples{
-data(CEUData)
+data(CEUSNP); data(CEUDist)
 tt <- LDheatmap(CEUSNP, genetic.distances=CEUDist)
 LDheatmap.marks(tt, 15, 3, cex=1.6, col="blue")
 }

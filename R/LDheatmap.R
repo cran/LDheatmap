@@ -38,8 +38,8 @@
 #'SNP.name=NULL, color=NULL, newpage=TRUE,
 #'name="ldheatmap", vp.name=NULL, pop=FALSE, flip=NULL, text=FALSE)
 #'
-#' @param gdat SNP data: a data frame of genotype objects, a \code{SnpMatrix} object, a square matrix of
-#'pairwise linkage disequilibrium measurements or an object of
+#' @param gdat SNP data: a data frame of genotype objects, a \code{SnpMatrix} 
+#'object, a square matrix of pairwise linkage disequilibrium measurements or an object of
 #'class \code{"LDheatmap"} (the returned object of this function).
 #'
 #' @param genetic.distances A numeric vector of map locations of the SNPs,
@@ -101,17 +101,18 @@
 #'@param vp.name A character string specifying the name of the viewport
 #'where the heat map is going to be drawn.
 #'@param pop If \code{TRUE}, the viewport where the heat map is drawn is
-#'\code{pop}ped (i.e. removed) from the viewport tree after drawing. Default=\code{FALSE}.
+#'\code{pop}ped (i.e. removed) from the viewport tree after drawing. 
+#'Default=\code{FALSE}.
 #'
-#'@param flip If \code{TRUE}, the LDheatmap plot is flipped below a horizontal line, in the style of Haploview. Default is \code{FALSE}.
+#'@param flip If \code{TRUE}, the LDheatmap plot is flipped below a horizontal 
+#'line, in the style of Haploview. Default is \code{FALSE}.
 #'@param text If \code{TRUE}, the LD measurements are printed on each cell.
 #'
 #'@details
-#'The input object \code{gdat} can be a data frame of \code{genotype} objects
-#'(a data structure from the \pkg{genetics} package), a \code{SnpMatrix} object (a
-#'                                                                               data structure from the \pkg{snpStats} package), or
-#'any square matrix with values between 0 and 1
-#'inclusive.
+#'The input object \code{gdat} can be a data frame of \code{genotype} objects 
+#'(a data structure from the \pkg{genetics} package), a \code{SnpMatrix} object 
+#'(a data structure from the \pkg{snpStats} package), or
+#'any square matrix with values between 0 and 1 inclusive.
 #'LD computation is much faster for \code{SnpMatrix} objects than for
 #'\code{genotype} objects.
 #'In the case of a matrix of LD values between 0 and 1,
@@ -194,7 +195,7 @@
 #'gdat<-as(gdat,"SnpMatrix")
 #'LDheatmap(gdat,genetic.distances=c(0,1000,3000,4000,10000))
 #'#Load the package's data set
-#'data(CEUData)
+#'data(CEUSNP); data(CEUDist)
 #'#Creates a data frame "CEUSNP" of genotype data and a vector "CEUDist"
 #'#of physical locations of the SNPs
 #'# Produce a heat map in a grey color scheme
@@ -223,7 +224,7 @@
 #'#### Use an RGB pallete for the color scheme ####
 #'rgb.palette <- colorRampPalette(rev(c("blue", "orange", "red")), space = "rgb")
 #'LDheatmap(MyHeatmap, color=rgb.palette(18))
-
+# Create MORE CONFLICTS with test. ANOTHER
 
 #'#### Modify the plot by using 'grid.edit' function ####
 #'#Draw a heat map where the SNPs "rs2283092" and "rs6979287" are labelled.
@@ -313,7 +314,7 @@
 
 #'#### Draw a lattice-like plot with heat maps in panels ####
 #'# Load CHBJPTSNP and CHBJPTDist
-#'data(CHBJPTData)
+#'data(CHBJPTSNP); data(CHBJPTDist)
 #'# Make a variable which indicates Chinese vs. Japanese
 #'pop <- factor(c(rep("chinese",45), rep("japanese",45)))
 #'require(lattice)
@@ -548,5 +549,4 @@ preDrawDetails.symbols <- function(x) {
 postDrawDetails.symbols <- function(x) {
   popViewport()
 }
-
 
